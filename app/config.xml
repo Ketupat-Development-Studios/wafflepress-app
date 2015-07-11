@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.wafflepress324698" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>WafflePress</name>
+<widget id="com.ketupat.wafflepress" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Waffle Press</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Gold, Crisp, Batter News
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="waffle@ketupat.me" href="http://waffle.ketupat.me">
+      Ketupat Development Studios
     </author>
   <content src="index.html"/>
   <access origin="*"/>

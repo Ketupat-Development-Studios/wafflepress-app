@@ -5,7 +5,8 @@
 
 	<body>
 		<script>
-			url = "http://localhost:8100/test.xml"
+			url = "http://waffle.ketupat.me/feed/"
+			//url = "http://localhost:8100/test.xml"
 			$.get(url, function (data) {
 			    $(data).find("item").each(function () { // or "item" or whatever suits your feed
 			        var el = $(this);

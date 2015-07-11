@@ -1,0 +1,14 @@
+<ion-view view-title="Posts">
+  <ion-content class="padding">
+    <div class="card" ng-repeat="waffle in waffles">
+    	<div class="item item-text-wrap">
+			<h2>{{waffle.title}}</h2>
+			<p>{{waffle.niceDate}}</p>
+		</div>
+		<div class="item item-body">
+			<p>{{waffle.description}}</p>
+			<img class="full-image" ng-src="{{waffle.img}}">
+		</div>
+    </div>
+  </ion-content>
+</ion-view>
