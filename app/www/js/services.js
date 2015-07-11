@@ -1,10 +1,7 @@
 angular.module('waffle.services', [])
 
 .factory('Posts', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var posts = localStorage.get("posts");
+  var posts = JSON.parse(localStorage.get("posts"));
 
   return {
     all: function() {

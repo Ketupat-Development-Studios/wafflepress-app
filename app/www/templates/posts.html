@@ -1,6 +1,6 @@
 <ion-view view-title="Posts">
   <ion-content class="padding">
-    <div class="card" ng-repeat="waffle in waffles">
+    <div class="card" ng-repeat="waffle in waffles" ng-click="eatWaffle(waffle.postId)">
     	<div class="item item-text-wrap">
 			<h2>{{waffle.title}}</h2>
 			<p>{{waffle.niceDate}}</p>
