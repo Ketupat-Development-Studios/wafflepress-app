@@ -1,0 +1,3 @@
+**The Waffle Press** is a leading publication that deals with almost anything the editors can get their hands on. Our primary objective is to provide a batter take on the latest happenings in a concise and crisp manner.
+
+We work closely on our scientific articles with Dr. Bingley, a leading scientist and science communicator. Dr. Bingley received his BSc in Physics and Manipulative Statistics from the University of Notting, just off the M27, right before Alton. He then famously worked as a Spin Doctor for the Nobel Prize winning Physicist Robert Millikan, gently massaging experimental data to create useful results. He presently works at the Raffles Science Institute, a world leading think tank and research organisation that churns out mind bending findings.
