@@ -1,7 +1,7 @@
 angular.module('waffle.services', [])
 
 .factory('Posts', function() {
-  var posts = JSON.parse(localStorage.get("posts"));
+  var posts = JSON.parse(localStorage.getItem("posts"));
 
   return {
     all: function() {
@@ -12,7 +12,7 @@ angular.module('waffle.services', [])
     },
     get: function(postId) {
       for (var i = 0; i < posts.length; i++) {
-        if (posts[i].id === parseInt(postId)) {
+        if (posts[i].postId == parseInt(postId)) {
           return posts[i];
         }
       }

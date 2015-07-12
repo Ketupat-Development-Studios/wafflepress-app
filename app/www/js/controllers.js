@@ -9,6 +9,13 @@ angular.module('waffle.controllers', [])
       e.innerHTML = input;
       return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
     }
+
+    function strip(html){
+      var tmp = document.createElement("DIV");
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || "";
+    }
+
     $scope.bakeWaffles = function(){
       $http.get(url)
         .success(function(data) {
@@ -31,6 +38,11 @@ angular.module('waffle.controllers', [])
               newWaffle.description = el.find("description").text().replace(/<(?:.|\n)*?>/gm, '').substring(0,330);
               newWaffle.description = htmlDecode(newWaffle.description.substring(0,newWaffle.description.lastIndexOf(" "))+"...");
               newWaffle.content = el.find("encoded").text().replace("<![CDATA[", "").replace("]]>", "")
+              newWaffle.content = newWaffle.content
+                .substring(
+                  newWaffle.content.indexOf('/>')+2,
+                  newWaffle.content.indexOf("Spread the Waffle")
+                )
               newWaffle.date = el.find("pubDate").text()
               newWaffle.niceDate = newWaffle.date.substring(0,newWaffle.date.length-6)
               $scope.waffles.push(newWaffle);
@@ -48,6 +60,8 @@ angular.module('waffle.controllers', [])
       }
 
       $scope.eatWaffle = function(id){
+        console.log(id);
+        window.location.href="#/posts/"+id
         $state.go("posts",{postId:id})
       }
 
@@ -56,10 +70,10 @@ angular.module('waffle.controllers', [])
       }
 })
 
-.controller('ViewCtrl', function($scope, $routeParams, Posts){
-  postId = $routeParams.postId
-  console.log(postId)
-  console.log(Posts.get(postId))
+.controller('ViewCtrl', function($scope, $stateParams, $timeout, Posts){
+  postId = $stateParams.postId
+  $scope.post = Posts.get(postId)
+  $timeout(function(){$scope.$broadcast('scroll.resize');},500);
 })
 /*
 .controller('ChatsCtrl', function($scope, Chats) {

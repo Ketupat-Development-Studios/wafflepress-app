@@ -1,4 +1,5 @@
-<ion-view view-title="{{post.name}}">
-	<ion-content class="padding">
+<ion-view view-title="{{post.title}}">
+	<ion-content class="padding" scroll="true" scrollbar-y="true" padding="true">
+		<div ng-bind-html="post.content" ></div>
 	</ion-content>
 </ion-view>
