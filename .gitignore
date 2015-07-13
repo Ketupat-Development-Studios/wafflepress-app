@@ -73,3 +73,6 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
+
+#Keyfiles
+waffle.keystore
