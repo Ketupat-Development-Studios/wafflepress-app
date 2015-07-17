@@ -1,7 +1,10 @@
 angular.module('waffle.controllers', [])
 
-.controller('PostsCtrl', function($scope, $state, $http){
-    $scope.waffles = []
+.controller('PostsCtrl', function($scope, $state, $http, $ionicLoading){
+    $scope.waffles = [];
+    if(localStorage.getItem("posts") != null){
+      $scope.waffles = JSON.parse(localStorage.getItem("posts"))
+    }
     var url = "http://waffle.ketupat.me/feed/"
 
     function htmlDecode(input){
@@ -17,6 +20,7 @@ angular.module('waffle.controllers', [])
     }
 
     $scope.bakeWaffles = function(){
+      $scope.waffles = [];
       $http.get(url)
         .success(function(data) {
           xmlDoc = $.parseXML(data)
@@ -35,7 +39,7 @@ angular.module('waffle.controllers', [])
               newWaffle.img = newWaffle.description.substring(
                 newWaffle.description.indexOf('src="')+5,
                 newWaffle.description.indexOf('" class'))
-              newWaffle.description = el.find("description").text().replace(/<(?:.|\n)*?>/gm, '').substring(0,330);
+              newWaffle.description = el.find("description").text().replace(/<(?:.|\n)*?>/gm, '').substring(0,300);
               newWaffle.description = htmlDecode(newWaffle.description.substring(0,newWaffle.description.lastIndexOf(" "))+"...");
               newWaffle.content = el.find("encoded").text().replace("<![CDATA[", "").replace("]]>", "")
               newWaffle.content = newWaffle.content
@@ -48,9 +52,16 @@ angular.module('waffle.controllers', [])
               $scope.waffles.push(newWaffle);
           });
           $scope.serveWaffles($scope.waffles);
+          $ionicLoading.hide();
+          $scope.$broadcast('scroll.refreshComplete');
         })
         .error(function(data) {
-          alert("zzz waffles burnt: "+data);
+          $scope.showAlert = function() {
+            var ohNo = $ionicPopup.alert({
+              title: 'Oh Bother.',
+              template: 'Evil badgers have burnt your waffles. You probably should report this to the squirrel and cat.'
+            })
+          };
         });
       }
 
@@ -74,23 +85,4 @@ angular.module('waffle.controllers', [])
   postId = $stateParams.postId
   $scope.post = Posts.get(postId)
   $timeout(function(){$scope.$broadcast('scroll.resize');},500);
-})
-/*
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})*/
+});

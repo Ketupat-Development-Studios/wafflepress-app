@@ -1,14 +1,16 @@
 <ion-view view-title="Posts">
-  <ion-content class="padding">
-    <div class="card" ng-repeat="waffle in waffles" ng-click="eatWaffle(waffle.postId)">
-    	<div class="item item-text-wrap">
-			<h2>{{waffle.title}}</h2>
-			<p>{{waffle.niceDate}}</p>
-		</div>
-		<div class="item item-body">
-			<p>{{waffle.description}}</p>
-			<img class="full-image" ng-src="{{waffle.img}}">
-		</div>
-    </div>
+  <ion-content class="padding" overflow-scroll="true" scrollbar-x="false">
+  	<ion-refresher
+    	pulling-text="get me more waffles!"
+    	on-refresh="bakeWaffles()">
+  	</ion-refresher>
+    <ion-list>
+      <ion-item ng-repeat="waffle in waffles" class="item-thumbnail-left" ng-click="eatWaffle(waffle.postId)">
+        <img ng-src="{{waffle.img}}">
+        <h2 class="header thin flow-text">{{waffle.title}}</h2>
+        <p class="subdued">{{waffle.niceDate}}</p>
+        <p>{{waffle.description}}</p>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
